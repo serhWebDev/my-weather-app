@@ -12,6 +12,7 @@ const API_KEY = APIkey.APIkey;
 
 class App extends Component {
     state = {
+        quotes: undefined,
         temperature: undefined,
         city: undefined,
         country: undefined,
@@ -43,7 +44,7 @@ class App extends Component {
                 country: undefined,
                 humidity: undefined,
                 description: undefined,
-                error: 'Please, enter the value'
+                error: 'Please, enter the value "city" or "country"'
             })
         }
     };
@@ -52,11 +53,11 @@ class App extends Component {
             <div>
                 <div className="wrapper">
                     <div className="container">
-                        <div className="row">
-                            <div className="col-xs-5 title-container">
+                        <div className="row justify-content-md-center">
+                            <div className="col-xs-12 col-sm-12 col-md-5">
                                 <Titles />
                             </div>
-                            <div className="col-xs-7 form-container">
+                            <div className="formAndWeather col-xs-12 col-sm-12 col-md-7">
                                 <Form getWeather={this.getWeather}/>
                                 <Weather
                                     temperature={this.state.temperature}
