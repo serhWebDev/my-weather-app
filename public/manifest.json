@@ -1,6 +1,7 @@
 {
   "short_name": "Weather App",
-  "name": "Weather Application  by serhiiVek",
+  "name": "Weather App",
+  "description": "Weather Application by serhiiVek",
   "icons": [
     {
       "src": "favicon.ico",

@@ -6,18 +6,21 @@ import Titles from './components/Titles';
 import Form from './components/Form';
 import Weather from "./components/Weather";
 
+import 'materialize-css/dist/css/materialize.min.css';
 import './App.css';
 
 const API_KEY = APIkey.APIkey;
 
 class App extends Component {
     state = {
-        quotes: undefined,
-        temperature: undefined,
-        city: undefined,
-        country: undefined,
-        humidity: undefined,
-        description: undefined,
+        weather: {
+            quotes: undefined,
+            temperature: undefined,
+            city: undefined,
+            country: undefined,
+            humidity: undefined,
+            description: undefined
+        },
         error: undefined
     };
     getWeather = async (e) => {
@@ -29,21 +32,25 @@ class App extends Component {
         if (city && country){
             console.log(data);
             this.setState({
-                temperature: data.main.temp,
-                city: data.name,
-                country: data.sys.country,
-                humidity: data.main.humidity,
-                description: data.weather[0].description,
+                weather: {
+                    temperature: data.main.temp,
+                    city: data.name,
+                    country: data.sys.country,
+                    humidity: data.main.humidity,
+                    description: data.weather[0].description,
+                },
                 error: ''
             })
         } else {
             console.log(data);
             this.setState({
-                temperature: undefined,
-                city: undefined,
-                country: undefined,
-                humidity: undefined,
-                description: undefined,
+                weather: {
+                    temperature: undefined,
+                    city: undefined,
+                    country: undefined,
+                    humidity: undefined,
+                    description: undefined
+                },
                 error: 'Please, enter the value "city" or "country"'
             })
         }
@@ -54,17 +61,13 @@ class App extends Component {
                 <div className="wrapper">
                     <div className="container">
                         <div className="row justify-content-md-center">
-                            <div className="col-xs-12 col-sm-12 col-md-5">
+                            <div className="col s12 m5">
                                 <Titles />
                             </div>
-                            <div className="formAndWeather col-xs-12 col-sm-12 col-md-7">
+                            <div className="formAndWeather col s12 m7">
                                 <Form getWeather={this.getWeather}/>
                                 <Weather
-                                    temperature={this.state.temperature}
-                                    city={this.state.city}
-                                    country={this.state.country}
-                                    humidity={this.state.humidity}
-                                    description={this.state.description}
+                                    weather={this.state.weather}
                                     error={this.state.error}
                                 />
                             </div>
